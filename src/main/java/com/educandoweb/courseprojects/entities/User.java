@@ -1,5 +1,6 @@
 package com.educandoweb.courseprojects.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.aspectj.weaver.ast.Or;
 
@@ -23,6 +24,7 @@ public class User implements Serializable {
     public User(){
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
