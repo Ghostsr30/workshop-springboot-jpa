@@ -2,6 +2,7 @@ package com.educandoweb.courseprojects.entities;
 
 import com.educandoweb.courseprojects.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -86,6 +87,14 @@ public class Order implements Serializable {
     }
     public void setPayment(Payment payment){
         this.payment = payment;
+    }
+
+    public Double getTotal(){
+        double sum = 0.0;
+        for(OrderItem x : items){
+            sum += x.getSubtotal();
+        }
+        return sum;
     }
 
     @Override
